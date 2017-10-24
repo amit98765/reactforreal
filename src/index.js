@@ -124,10 +124,13 @@ class SaveManager extends React.Component {
     save(event) {
         event.preventDefault();
         this.setState(() => ({ saveStatus: WAITING }));
-        this.props.saveFunction(this.props.data).then(
-            success => this.setState(() => ({ saveStatus: SUCCESS })),
-            failure => this.setState(() => ({ saveStatus: FAILURE }))
-        )
+        setTimeout(() => {
+            this.props.saveFunction(this.props.data).then(
+                success => this.setState(() => ({ saveStatus: SUCCESS })),
+                failure => this.setState(() => ({ saveStatus: FAILURE }))
+            )
+        }, 500)
+
     }
 
     render() {
