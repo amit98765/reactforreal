@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "build": "cross-env NODE_ENV=production webpack -p ",
     "start": "cross-env NODE_ENV=development webpack-dev-server -d"
   },
@@ -17,10 +17,13 @@
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-jest": "^21.2.0",
     "babel-loader": "^7.1.2",
     "babel-preset-react-app": "^3.0.3",
     "cross-env": "^5.1.0",
+    "enzyme": "^3.1.0",
     "jest": "^21.2.1",
+    "react-test-renderer": "^16.0.0",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3"
   },
