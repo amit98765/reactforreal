@@ -1,0 +1,36 @@
+import React from 'react';
+import SaveButton from './SaveButton';
+import AlertBox from './AlertBox';
+import { IDLE, SUCCESS, FAILURE, WAITING } from './saveStatus';
+
+class SaveManager extends React.Component {
+    constructor() {
+        super();
+        this.save = this.save.bind(this);
+        this.state = {
+            saveStatus: IDLE
+        }
+    }
+    save(event) {
+        event.preventDefault();
+        this.setState(() => ({ saveStatus: WAITING }));
+        setTimeout(() => {
+            this.props.saveFunction(this.props.data).then(
+                success => this.setState(() => ({ saveStatus: SUCCESS })),
+                failure => this.setState(() => ({ saveStatus: FAILURE }))
+            )
+        }, 500)
+
+    }
+
+    render() {
+        return (
+            <div className="flex flex-column mv2">
+                <SaveButton onClick={this.save} />
+                <AlertBox status={this.state.saveStatus} />
+            </div>
+        )
+    }
+}
+
+export default SaveManager;
